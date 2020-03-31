@@ -18,8 +18,22 @@
 *
 */
 
-var rockPaperScissors = function (
-) {
-  // TODO: your solution here
+var arr = ["R","P","S"];
+var result = new Array(3);
+var results = [];
+
+var rockPaperScissors = function (arr, len, startPosition, result) {
+  if (len === 0){
+    //console.log(result);
+    results.push(result.join(''));
+    console.log(results);
+  }
+  for (var i = startPosition; i < 27; i++){ //was arr.length -len
+    result[3 - len] = arr[i]; //3 --> result.length
+    //console.log(result);
+    rockPaperScissors(arr, len-1, i+1, result);
+  }
+  return results;
 };
 
+rockPaperScissors(arr, 3, 0, result);
