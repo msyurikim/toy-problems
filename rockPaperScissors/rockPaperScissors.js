@@ -83,6 +83,7 @@
 var arr = ["R","P","S"];
 var results = [];
 var rockPaperScissors = function() {
+  var result = [];
   for (var i = 0; i < arr.length; i++) {
     result[0] = arr[i];
     for (var j = 0; j < arr.length; j++) {
