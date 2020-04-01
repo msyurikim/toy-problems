@@ -23,12 +23,14 @@ var evenOccurrence = function(arr) {
     }
   }
   //traverse object
-  console.log(evenTimes);
-
   for (var i = 0; i < Object.keys(evenTimes).length; i++) {
     var key = Object.keys(evenTimes)[i];
-    var num = key.slice(1, key.length-1);
-    if (evenTimes[key] % 2 === 0) return parseInt(num);
+    var keyValue = key.slice(1, key.length-1);
+    if (typeof parseInt(keyValue) === 'number' && evenTimes[key] % 2 === 0) {
+      return parseInt(keyValue);
+    } else if (evenTimes[key] % 2 === 0) {
+      return keyValue;
+    }
   }
   return null;
 };
