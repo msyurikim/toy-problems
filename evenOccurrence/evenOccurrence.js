@@ -26,9 +26,10 @@ var evenOccurrence = function(arr) {
   for (var i = 0; i < Object.keys(evenTimes).length; i++) {
     var key = Object.keys(evenTimes)[i];
     var keyValue = key.slice(1, key.length-1);
-    if (typeof keyValue*1 === 'number') { //parseInt throws error bc non-numbers will eval to NaN, which is type 'number'
+    if (!isNaN(Number(keyValue)) && typeof Number(keyValue) === 'number') {
+    //parseInt throws error bc non-numbers will eval to NaN, which is type 'number'
       if (evenTimes[key] % 2 === 0) {
-        return parseInt(keyValue);
+        return Number(keyValue);
       }
     } else if (evenTimes[key] % 2 === 0) {
       console.log(keyValue);
@@ -40,5 +41,6 @@ var evenOccurrence = function(arr) {
 
 var onlyEven = evenOccurrence([1, 7, 2, 4, 5, 6, 8, 9, 6, 4]);
 var onlyEven2 = evenOccurrence(['cat', 'dog', 'dig', 'cat']);
-console.log(onlyEven); //  4
+console.log(typeof onlyEven); //  number
+console.log(onlyEven); //4
 console.log(onlyEven2); //  cat
