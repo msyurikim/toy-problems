@@ -18,22 +18,81 @@
 *
 */
 
-var arr = ["R","P","S"];
-var result = new Array(3);
-var results = [];
+// var arr = ["R","P","S"];
+// var result = new Array(3);
+// var results = [];
 
-var rockPaperScissors = function (arr, len, startPosition, result) {
-  if (len === 0){
-    //console.log(result);
-    results.push(result.join(''));
-    console.log(results);
-  }
-  for (var i = startPosition; i < 27; i++){ //was arr.length -len
-    result[3 - len] = arr[i]; //3 --> result.length
-    //console.log(result);
-    rockPaperScissors(arr, len-1, i+1, result);
+// var rockPaperScissors = function (arr, len, startPosition, result) {
+//   if (len === 0){
+//     //console.log(result);
+//     results.push(result.join(''));
+//     console.log(results);
+//   }
+//   for (var i = startPosition; i < 3; i++){ //was arr.length -len
+//     result[3 - len] = arr[i]; //3 --> result.length
+//     //console.log(result);
+//     rockPaperScissors(arr, len-1, i+1, result);
+//   }
+//   return results;
+// };
+
+// var rockPaperScissors = function(rounds) {
+//   var arr = ["R","P","S"];
+//   //var result = new Array(3);
+//   var results = [];
+//   var rounds = rounds;
+//   var games = Math.pow(arr.length, rounds);
+//   return play(0, 0, rounds, games, []);
+// };
+
+// var play = function(numRound, numGame, rounds, games, result) {
+//   if (numGame === games) {
+//     results.push(result.join(''));
+//     return results;
+//   }
+
+//   for (var i = 0; i < arr.length; i++) {
+//     // if (numRound === rounds) {
+//     //   console.log(result);
+//     //   results.push(result.join(''));
+//     //   //result = new Array(3);
+//     //   numRound = 0;
+//     //   numGame += 1;
+//     //   return play(numGame, numRound, rounds, games, []);
+//     // } else {
+//       result[numRound] = arr[i];
+//       console.log(numRound);
+//       numRound += 1;
+//     //}
+//   }
+
+//   if (numRound === rounds) {
+//     console.log(result);
+//     results.push(result.join(''));
+//     //result = new Array(3);
+//     console.log(results);
+//     numRound = 0;
+//     numGame += 1;
+//     return play(numGame, numRound, rounds, games, []);
+//   }
+
+// };
+
+// console.log(rockPaperScissors(3));
+
+var arr = ["R","P","S"];
+var results = [];
+var rockPaperScissors = function() {
+  for (var i = 0; i < arr.length; i++) {
+    result[0] = arr[i];
+    for (var j = 0; j < arr.length; j++) {
+      result[1] = arr[j];
+      for (var k = 0; k < arr.length; k++) {
+        result[2] = arr[k];
+        results.push(result.join(''));
+      }
+    }
   }
   return results;
-};
-
-rockPaperScissors(arr, 3, 0, result);
+}
+console.log(rockPaperScissors());
