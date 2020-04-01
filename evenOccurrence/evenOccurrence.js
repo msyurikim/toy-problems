@@ -28,7 +28,7 @@ var evenOccurrence = function(arr) {
   for (var i = 0; i < Object.keys(evenTimes).length; i++) {
     var key = Object.keys(evenTimes)[i];
     var num = key.slice(1, key.length-1);
-    if (evenTimes[key] % 2 === 0) return num;
+    if (evenTimes[key] % 2 === 0) return parseInt(num);
   }
   return null;
 };
