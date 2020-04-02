@@ -22,24 +22,61 @@ var getIndexBelowMaxForKey = function(str, max) {
 
 var makeHashTable = function() {
   var result = {};
-  var storage = [];
+  var storage = [];   //what does this store?
   var storageLimit = 4;
   var size = 0;
-  
-  result.insert = function(/*...*/ 
-) {
+
+  result.insert = function(key, value) {
     // TODO: implement `insert`
+    var index = getIndexBelowMaxForKey(key, storageLimit);
+    var bucket = storage[index] || [];
+    kIndex = -1;  //index in bucket
+
+    bucket.forEach(function(pair, i) {
+      if (pair[0] === key) {
+        //replace if key already exists
+        pair[1] = value;
+        kIndex = i;
+      }
+    });
+
+    if (kIndex < 0) {
+      bucket.push([key, value]);
+    }
+
+    size++;
+    if (size > (storageLimit * 3/4)) {
+      storageLimit *= 2;
+    }
   };
 
-  result.retrieve = function(/*...*/ 
-) {
+  result.retrieve = function(key) {
     // TODO: implement `retrieve`
+    var index = getIndexBelowMaxForKey(key, storageLimit);
+    var bucket = storage[index] || [];
+    bucket.forEach(function(pair) {
+      if (pair[0] === key) {
+        return pair[1];
+      }
+    });
+    //return;
   };
 
-  result.remove = function(/*...*/ 
-) {
+  result.remove = function(key) {
     // TODO: implement `remove`
+    var index = getIndexBelowMaxForKey(value, storageLimit);
+    var bucket = storage[index] || [];
+    var kIndex = -1;
+    bucket.forEach(function(pair, i;) {
+      if (pair[0] === key) {
+        kIndex = i;
+        bucket.splice(i, 1);
+      }
+    });
+    size--;
+    if (size < (storageLimit/4)) {
+      storageLimit *= 1/2;
+    }
   };
-
   return result;
 };
