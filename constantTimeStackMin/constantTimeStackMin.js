@@ -39,7 +39,7 @@
   // return the minimum value in the stack
     this.min = function() {
       this.sort();
-      return storage[0];
+      return this.storage[0];
     };
 
     this.sort = function() {
@@ -48,3 +48,11 @@
 
   };
 
+var example = new Stack();
+example.push(4);
+example.push(3);
+console.log(example.min()); //=== 3
+example.push(3);
+example.push(2);
+example.push(2);
+console.log(example.min()); //=== 2
