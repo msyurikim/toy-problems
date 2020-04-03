@@ -38,12 +38,14 @@
 
   // return the minimum value in the stack
     this.min = function() {
-      this.sort();
-      return this.storage[0];
+      var copy = this.sort();
+      return copy[0];
     };
 
     this.sort = function() {
-      this.storage.sort((prev, val) => prev - val);
+      var copy = this.storage.slice();
+      copy.sort((prev, val) => prev - val);
+      return copy;
     }
 
   };
@@ -56,3 +58,24 @@ example.push(3);
 example.push(2);
 example.push(2);
 console.log(example.min()); //=== 2
+
+var stack = new Stack();
+stack.push(200);
+console.log(stack.min()); //200
+//stack.min().should.be.equal(200);
+
+stack.push(100);
+//stack.min().should.be.equal(100);
+console.log(stack.min()); //100
+
+stack.pop();
+console.log(stack.min()); //200
+//stack.min().should.be.equal(200);
+
+stack.push(50);
+stack.push(50);
+console.log(stack.min()); //50
+//stack.min().should.be.equal(50);
+stack.pop();
+console.log(stack.min()); //50
+//stack.min().should.be.equal(50);
