@@ -67,7 +67,7 @@ var makeHashTable = function() {
     var index = getIndexBelowMaxForKey(value, storageLimit);
     var bucket = storage[index] || [];
     var kIndex = -1;
-    bucket.forEach(function(pair, i;) {
+    bucket.forEach(function(pair, i) {
       if (pair[0] === key) {
         kIndex = i;
         bucket.splice(i, 1);
@@ -80,3 +80,7 @@ var makeHashTable = function() {
   };
   return result;
 };
+
+
+var hashTableTest = makeHashTable();
+
