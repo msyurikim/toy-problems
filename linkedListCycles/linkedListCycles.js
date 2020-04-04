@@ -36,13 +36,15 @@ var Node = function(value) {
 };
 
 var linked = [];
+
 var hasCycle = function(linkedList) {
   // TODO: implement me!
   if (linkedList.next) { //(linkedList.next !== undefined)
-    if (linked.includes(linkedList)) {
+    if (linked.includes(linkedList.value)) {
       return true;
     }
-    linked.push(linkedList);
+    linked.push(linkedList.value);
+    console.log(linkedList.value);
     return hasCycle(linkedList.next);
   } else {
     return false;
@@ -57,3 +59,24 @@ var nodeE = nodeD.next = Node('E');
 console.log(hasCycle(nodeA)); // => false
 nodeE.next = nodeB;
 console.log(hasCycle(nodeA)); // => true
+
+// aka, start -> tail0 -> tail1 -> ... -> tail99998 -> tail99999 -> null
+var startNode = Node('start');
+var currentNode = startNode;
+// one. million nodes!! wahahahaha
+for (var i = 0; i < 999999; i++) {
+  currentNode.next = Node('tail' + i);
+  currentNode = currentNode.next;
+}
+console.log(hasCycle(startNode)); //false
+
+var startNode2 = Node('start');
+var currentNode2 = startNode;
+// one. million nodes!! wahahahaha
+for (var i = 0; i < 999999; i++) {
+  currentNode2.next = Node('tail' + i);
+  currentNode2 = currentNode2.next;
+}
+// have the tail of the linked list point to the start
+currentNode2.next = startNode2;
+console.log(hasCycle(startNode2)); //true
