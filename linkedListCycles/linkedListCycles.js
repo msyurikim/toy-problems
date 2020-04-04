@@ -44,7 +44,7 @@ var hasCycle = function(linkedList) {
       return true;
     }
     linked.push(linkedList.value);
-    console.log(linkedList.value);
+    //console.log(linkedList.value);
     return hasCycle(linkedList.next);
   } else {
     return false;
