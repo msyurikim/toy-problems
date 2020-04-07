@@ -39,25 +39,39 @@ var bubbleSort = function(array) {
     swap(array);
   }
 
+  // var loops = 0;
+
+  // while(loops < array.length) {
+
+  // }
+
   return array;
 };
 
-var swap = function(array) {
+var swap = function(array) { //,x
   for (var i = 0; i < array.length - 1; i++) {
-
+  //var i = x || 0;
+  //while (i < array.length;)
     if (array[i] > array[i+1]) {
       var temp = array[i + 1];
       array[i + 1] = array[i];
       array[i] = temp;
+      //swap(array);
     } else {  //already sorted
-      break;  //get out of loop
+      //break;  //get out of loop
+      continue;
     }
 
   } // end of first iteration, first element of original array is sorted
 }
 
-console.log(bubbleSort([2, 1, 3])); // yields [1, 2, 3])
+// console.log(bubbleSort([2, 1, 3])); // yields [1, 2, 3])
 
-console.log(bubbleSort([5, 4, 3, 2, 1]));
+// var input = [1, 2, 43, 100, 100, 21, 21];
+// var expected = [1, 2, 21, 21, 43, 100, 100];
 
-console.log([1, 2, 3, 4, 5]);
+var input = [24.7, 24.3, 23, 9, 3, 3, 100, 25, 100];
+var expected = [3, 3, 9, 23, 24.3, 24.7, 25, 100, 100];
+
+console.log(bubbleSort(input));
+// console.assert(bubbleSort(input) ===)
