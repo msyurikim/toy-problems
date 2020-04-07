@@ -51,6 +51,19 @@ var hasCycle = function(linkedList) {
   }
 };
 
+// var hasCycle = function(linkedList) {
+//   let values = {};
+//   while (linkedList.next) {
+//     if (values[linkedList.value]) {
+//       return true;
+//     } else {
+//       values[linkedList.value] = true;
+//     }
+//     linkedList = linkedList.next;
+//   }
+//   return false;
+// };
+
 var nodeA = Node('A');
 var nodeB = nodeA.next = Node('B');
 var nodeC = nodeB.next = Node('C');

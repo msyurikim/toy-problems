@@ -32,7 +32,32 @@
 
 // Feel free to add helper functions if needed.
 
-
+//time complexity: O(n^2) --> worst case
 var bubbleSort = function(array) {
-  // Your code here.
+
+  for (var i = 0; i < array.length; i++) {
+    swap(array);
+  }
+
+  return array;
 };
+
+var swap = function(array) {
+  for (var i = 0; i < array.length - 1; i++) {
+
+    if (array[i] > array[i+1]) {
+      var temp = array[i + 1];
+      array[i + 1] = array[i];
+      array[i] = temp;
+    } else {  //already sorted
+      break;  //get out of loop
+    }
+
+  } // end of first iteration, first element of original array is sorted
+}
+
+console.log(bubbleSort([2, 1, 3])); // yields [1, 2, 3])
+
+console.log(bubbleSort([5, 4, 3, 2, 1]));
+
+console.log([1, 2, 3, 4, 5]);
