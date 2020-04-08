@@ -37,7 +37,7 @@
 // It will transform an array of numbers into an array of valid objects.
 var testingTransform = function(array) {
   var transform = [];
-  
+
   for (var i = 0; i < array.length; i++) {
     transform.push({value: array[i], i: i});
   }
@@ -47,6 +47,29 @@ var testingTransform = function(array) {
 
 var insertionSort = function(array
 ) {
-  // Your code goes here. Feel free to add helper functions if needed.
+  for (var i = 1; i < array.length; i++) {
+    for (var j = 0; j <= i; j++) {
+      if (i === j) {  //array[i] > array[j], and reach end of sorted part of array
+        break;
+      } else if (array[i].value < array[j].value) {
+        //var current = array.splice(i, 1); --> won't work bc creates Array object, instead of just extracting element
+        var current = array[i];
+        array = array.slice(0, i).concat(array.slice(i + 1));
+        //console.log(current);
+        var beg = array.slice(0, j);
+        //console.log(beg);
+        var end = array.slice(j);
+        //console.log('end', end);
+        end.unshift(current);
+        //console.log('unshifted', end);
+        array = beg.concat(end);
+      } else if (array[i].value === array[j].value) {
+        //i > j , so leave the order
+        break;
+      }
+    }
+  }
   return array;
 };
+
+console.log(insertionSort([{value: 2}, {value: 1}, {value: 3}]));
