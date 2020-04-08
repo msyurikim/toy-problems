@@ -45,33 +45,34 @@ var testingTransform = function(array) {
   return transform;
 };
 
-var insertionSort = function(array
-) {
+var insertionSort = function(array) {
   for (var i = 1; i < array.length; i++) {
+    console.log(array);
     for (var j = 0; j <= i; j++) {
+      console.log(j);
       if (i === j) {  //array[i] > array[j], and reach end of sorted part of array
         break;
       } else if (array[i].value < array[j].value) {
-        //var current = array.splice(i, 1); --> won't work bc creates Array object, instead of just extracting element
         var current = array.splice(i, 1);
+        console.log(current);
         array.splice(j, 0, current[0]);
-        // var current = array[i];
-        // array = array.slice(0, i).concat(array.slice(i + 1));
-        // var beg = array.slice(0, j);
-        // var end = array.slice(j);
-        // end.unshift(current);
-        // array = beg.concat(end);
+        console.log(array);
       } else if (array[i].value === array[j].value) {
         //i > j , so leave the order
-        break;
+        continue;
       }
     }
   }
   return array;
 };
 
-console.log(insertionSort([{value: 2}, {value: 1}, {value: 3}]));
-var array = testingTransform([3, 2, 1]);
+//console.log(insertionSort([{value: 2}, {value: 1}, {value: 3}]));
+// var array = testingTransform([3, 2, 1]);
+// var result = insertionSort(array);
+
+
+var array = testingTransform([1, 5, 1, 5]);
 var result = insertionSort(array);
-console.log(array);
+//array.should.eql([{ value: 1, i: 0 }, { value: 1, i: 2 }, { value: 5, i: 1 }, { value: 5, i: 3 }]);
+//console.log(array);
 console.log(result);
