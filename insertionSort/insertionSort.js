@@ -53,16 +53,14 @@ var insertionSort = function(array
         break;
       } else if (array[i].value < array[j].value) {
         //var current = array.splice(i, 1); --> won't work bc creates Array object, instead of just extracting element
-        var current = array[i];
-        array = array.slice(0, i).concat(array.slice(i + 1));
-        //console.log(current);
-        var beg = array.slice(0, j);
-        //console.log(beg);
-        var end = array.slice(j);
-        //console.log('end', end);
-        end.unshift(current);
-        //console.log('unshifted', end);
-        array = beg.concat(end);
+        var current = array.splice(i, 1);
+        array.splice(j, 0, current[0]);
+        // var current = array[i];
+        // array = array.slice(0, i).concat(array.slice(i + 1));
+        // var beg = array.slice(0, j);
+        // var end = array.slice(j);
+        // end.unshift(current);
+        // array = beg.concat(end);
       } else if (array[i].value === array[j].value) {
         //i > j , so leave the order
         break;
@@ -73,3 +71,7 @@ var insertionSort = function(array
 };
 
 console.log(insertionSort([{value: 2}, {value: 1}, {value: 3}]));
+var array = testingTransform([3, 2, 1]);
+var result = insertionSort(array);
+console.log(array);
+console.log(result);
