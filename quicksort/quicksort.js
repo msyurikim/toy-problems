@@ -18,22 +18,16 @@ var quicksort = function(array) {
   var arrCopy2 = [];
 
   //base cases
-  if (array.length === 1) {
-    return [array[0]];
-  } else if (array.length === 2) {
-    if (array[0] < array[1]) {
-      return [array[0], array[1]];
-    } else {
-      return [array[1], array[0]];
-    }
+  if (array.length <= 1) {
+    return array;
   }
   for (var i = 0; i <= array.length; i++) {
     if (i === array.length) {
+      console.log(arrCopy1);
+      console.log(array[pivot]);
+      console.log(arrCopy2);
       arrCopy1 = quicksort(arrCopy1);
       arrCopy2 = quicksort(arrCopy2);
-      console.log(arrCopy1);
-      console.log(pivot);
-      console.log(arrCopy2);
     } else if (array[i] < array[pivot]) {
       arrCopy1.push(array[i]);
 
@@ -43,10 +37,11 @@ var quicksort = function(array) {
     }
   }
 
-  // arrCopy1 = quicksort(arrCopy1);
-  // arrCopy2 = quicksort(arrCopy2);
-
   return [...arrCopy1, array[pivot], ...arrCopy2];
 };
 
 console.log(quicksort([4, 2, 3, 4, 1]));
+
+var result = quicksort([8, 7, 3, 6, 9, 2, 4, 5, 1]);
+console.log(result);
+    // result.should.be.eql([1, 2, 3, 4, 5, 6, 7, 8, 9]);
