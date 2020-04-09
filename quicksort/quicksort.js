@@ -21,14 +21,15 @@ var quicksort = function(array) {
   if (array.length <= 1) {
     return array;
   }
-  for (var i = 0; i <= array.length; i++) {
-    if (i === array.length) {
-      console.log(arrCopy1);
-      console.log(array[pivot]);
-      console.log(arrCopy2);
-      arrCopy1 = quicksort(arrCopy1);
-      arrCopy2 = quicksort(arrCopy2);
-    } else if (array[i] < array[pivot]) {
+  for (var i = 0; i < array.length; i++) {
+    // if (i === array.length) {
+    //   console.log(arrCopy1);
+    //   console.log(array[pivot]);
+    //   console.log(arrCopy2);
+    //   arrCopy1 = quicksort(arrCopy1);
+    //   arrCopy2 = quicksort(arrCopy2);
+    // } else
+    if (array[i] < array[pivot]) {
       arrCopy1.push(array[i]);
 
     } else if (array[i] > array[pivot]) {
@@ -37,7 +38,8 @@ var quicksort = function(array) {
     }
   }
 
-  return [...arrCopy1, array[pivot], ...arrCopy2];
+  //return [...arrCopy1, array[pivot], ...arrCopy2];
+  return [...quicksort(arrCopy1), array[pivot], ...quicksort(arrCopy2)];
 };
 
 console.log(quicksort([4, 2, 3, 4, 1]));
