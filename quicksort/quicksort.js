@@ -13,15 +13,16 @@
 
 var quicksort = function(array) {
   //var pivot = Math.floor(Math.random() * array.length);
-  var pivot = Math.floor(array.length / 2);
+  //var pivot = Math.floor(array.length / 2);
+  var pivot = 0;
   var arrCopy1 = [];
   var arrCopy2 = [];
 
   //base cases
-  if (array.length <= 1) {
+  if (array.length < 1) {
     return array;
   }
-  for (var i = 0; i < array.length; i++) {
+  for (var i = 1; i < array.length; i++) {
     // if (i === array.length) {
     //   console.log(arrCopy1);
     //   console.log(array[pivot]);
@@ -32,9 +33,8 @@ var quicksort = function(array) {
     if (array[i] < array[pivot]) {
       arrCopy1.push(array[i]);
 
-    } else if (array[i] > array[pivot]) {
+    } else if (array[i] >= array[pivot]) {
       arrCopy2.push(array[i]);
-
     }
   }
 
