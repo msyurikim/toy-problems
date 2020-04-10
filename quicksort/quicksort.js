@@ -19,7 +19,7 @@ var quicksort = function(array) {
   var arrCopy2 = [];
 
   //base cases
-  if (array.length < 1) {
+  if (array.length <= 1) {
     return array;
   }
   for (var i = 1; i < array.length; i++) {
