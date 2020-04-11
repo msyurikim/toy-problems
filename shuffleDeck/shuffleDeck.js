@@ -31,8 +31,35 @@
  *   See https://www.dartmouth.edu/~chance/teaching_aids/books_articles/Mann.pdf .
  */
 
+// var shuffleDeck = function(deck) {
+//   // Your code here
+//   var half = Math.floor(deck.length / 2);
+
+//   for (var i = half; i < deck.length; i++) {
+//     var rand = Math.floor(Math.random() * half);
+//     var temp = deck[i];
+//     deck[i] = deck[rand];
+//     deck[rand] = temp;
+//   }
+
+//   return deck;
+// };
+
 var shuffleDeck = function(deck) {
   // Your code here
+  var shuffled = [];
+  var length = deck.length;
+
+  for (var i = 0; i < length; i++) {
+    var rand = Math.floor(Math.random() * deck.length);
+    shuffled.push(deck[rand]);
+    deck.splice(rand, 1);
+    console.log(deck.length);
+    console.log(deck);
+    console.log(shuffled);
+  }
+
+  return shuffled;
 };
 
 // Ordered deck generator provided for your testing convenience
@@ -50,3 +77,6 @@ var orderedDeck = function() {
 
   return deck;
 };
+
+var deck = orderedDeck();
+console.log(shuffleDeck(deck));
