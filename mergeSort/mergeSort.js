@@ -114,25 +114,26 @@ var mergeSort = function(array) {
     secHalf = mergeSort(secHalf);
 
 
-  //sort
-  firstHalf = sort(firstHalf);
-  secHalf = sort(secHalf);
+    //sort
+    firstHalf = sort(firstHalf);
+    secHalf = sort(secHalf);
 
-  //merge step
-  for (var i = 0; i < firstHalf.length; i++) {
-    for (var j = 0; j < secHalf.length; j++) {
-      if (firstHalf[i] > secHalf[j]) {
-        result.push(secHalf[j]);
-      } else {  //firstHalf[i] <= secHalf[j], preserves order
-        result.push(firstHalf[i]);
+    //merge step
+    for (var i = 0; i < firstHalf.length; i++) {
+      for (var j = 0; j < secHalf.length; j++) {
+        if (firstHalf[i] > secHalf[j]) {
+          result.push(secHalf[j]);
+        } else {  //firstHalf[i] <= secHalf[j], preserves order
+          result.push(firstHalf[i]);
+        }
       }
     }
   }
-}
+  console.log(result);
   return result;
 };
 
-var sort(array) = function(array) {
+var sort = function(array) {
   // base case:
   if (array.length === 1) {
     return array;
@@ -145,4 +146,7 @@ var sort(array) = function(array) {
       sorted.push(array[i]);
     }
   }
+  return sorted;
 };
+
+console.log(mergeSort([4,7,4,3,9,1,2]));
