@@ -95,58 +95,45 @@
  *
  */
 
-
+console.log('hi');
 
 var mergeSort = function(array) {
-  if (array.length <= 1) {
-    return array;
-  }
-
-  //split step
-  var halfIndex = Math.floor(array.length / 2);
-  var firstHalf = array.slice(0, halfIndex);
-  var secHalf = array.slice(halfIndex);
-  var result = [];
-
-  //recursive split
-  while (firstHalf.length > 1) {
-    firstHalf = mergeSort(firstHalf);
-    secHalf = mergeSort(secHalf);
-
-
-    //sort
-    firstHalf = sort(firstHalf);
-    secHalf = sort(secHalf);
-
-    //merge step
-    for (var i = 0; i < firstHalf.length; i++) {
-      for (var j = 0; j < secHalf.length; j++) {
-        if (firstHalf[i] > secHalf[j]) {
-          result.push(secHalf[j]);
-        } else {  //firstHalf[i] <= secHalf[j], preserves order
-          result.push(firstHalf[i]);
-        }
-      }
-    }
-  }
-  console.log(result);
-  return result;
-};
-
-var sort = function(array) {
-  // base case:
   if (array.length === 1) {
     return array;
   }
-  var sorted = [];
-  for (var i = 0; i < array.length-1; i++) {
-    if (array[i] > array[i+1]) {
-      sorted.push(array[i+1])
-    } else {
-      sorted.push(array[i]);
-    }
-  }
-  return sorted;
+  var half = Math.floor(array.length / 2);
+  var left = array.slice(0, half);
+  var right = array.slice(half);
+  //left = mergeSort(left);
+  //right = mergeSort(right);
+  //var sorted =
+  return mergeAndSort(mergeSort(left), mergeSort(right));
+  //return sorted;
 };
 
-console.log(mergeSort([4,7,4,3,9,1,2]));
+var mergeAndSort = function(left, right) {
+  var result = [];
+  var i = 0;
+  var j = 0;
+  while (i < left.length && j < right.length) {
+    if (left[i] > right[j]) {
+      result.push(right[j]);
+      j++;
+    }
+    else {  //left < right || left = right ---> preserves order (stable sort)
+      result.push(left[i]);
+      i++;
+    }
+  }
+  // if (i === left.length && j !== right.length) {  //numbers left over on right side
+  //   result.push(...right.slice(j));
+  // }
+  if (i !== left.length || j !== right.length) {  //numbers left over on left/right side
+    result.push(...left.slice(i), ...right.slice(j));
+  }
+  return result;
+};
+
+var result = mergeSort([4,7,4,3,9,1,2]);
+console.log(result);
+console.log(result.length);
