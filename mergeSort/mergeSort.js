@@ -110,7 +110,7 @@ var mergeSort = function(array) {
 };
 
 var merge = function(left, right) {
-  let result = 0, i = 0, j = 0;
+  let result = [], i = 0, j = 0;
   while (i < left.length && j < right.length) {
     if (left[i] > right[j]) {
       result.push(right[j]);
@@ -131,5 +131,6 @@ var merge = function(left, right) {
 };
 
 // var result = mergeSort([4,7,4,3,9,1,2]);
-// console.log(result);
+var result = mergeSort([8, 7, 3, 6, 9, 2, 4, 5, 1]);
+console.log(result);
 // console.log(result.length);
