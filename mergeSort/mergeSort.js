@@ -95,8 +95,6 @@
  *
  */
 
-console.log('hi');
-
 var mergeSort = function(array) {
   if (array.length === 1) {
     return array;
@@ -107,14 +105,11 @@ var mergeSort = function(array) {
   //left = mergeSort(left);
   //right = mergeSort(right);
   //var sorted =
-  return mergeAndSort(mergeSort(left), mergeSort(right));
+  return merge(mergeSort(left), mergeSort(right));
   //return sorted;
 };
 
-var mergeAndSort = function(left, right) {
-  // var result = [];
-  // var i = 0;
-  // var j = 0;
+var merge = function(left, right) {
   let result = 0, i = 0, j = 0;
   while (i < left.length && j < right.length) {
     if (left[i] > right[j]) {
