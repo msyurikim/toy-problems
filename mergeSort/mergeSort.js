@@ -131,6 +131,33 @@ var merge = function(left, right) {
 };
 
 // var result = mergeSort([4,7,4,3,9,1,2]);
-var result = mergeSort([8, 7, 3, 6, 9, 2, 4, 5, 1]);
-console.log(result);
+// var result = mergeSort([8, 7, 3, 6, 9, 2, 4, 5, 1]);
+// console.log(result);
 // console.log(result.length);
+
+var input = [];
+var n = 1000000;
+
+for (var i = 0; i < n; i++) {
+
+  var number = Math.floor(Math.random() * n);
+
+  input.push(number);
+
+}
+
+var sorted = input.sort(function (a, b) {
+
+  return a - b;
+
+});
+var result = mergeSort(input);
+
+for (var i = 0; i < n; i++) {
+  if (result[i] !== sorted[i]) {
+    console.log(result[i]);
+  }
+}
+
+console.log(result);
+console.log('done');

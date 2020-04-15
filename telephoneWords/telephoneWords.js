@@ -43,4 +43,41 @@ var phoneDigitsToLetters = {
 
 var telephoneWords = function(digitString) {
   // TODO: return every combination that can be spelled on a phone with these digits
+  var digitArr = digitString.split('');
+  var permutations = [];
+  var word = '';
+  var letterIndex = 0;
+
+  var findWord = function(letterIndex) {
+    for (var i = 0; i < digitArr.length; i++) {
+      word += findLetter(digitArr[i], letterIndex);
+      console.log(word);
+      if (word.length === digitArr.length) {
+        permutations.push(word);
+        word = '';
+        if (letterIndex < phoneDigitsToLetters[i].length - 1) {
+          return findWord(letterIndex + 1);
+        }
+        return;
+      }
+    }
+  }
+  findWord(0);
+  return permutations;
 };
+
+var findLetter = function(digit, letterIndex) {
+  if (digit === '0') {
+    return '0';
+  } else if (digit === '1') {
+    return '1';
+  } else {
+    return phoneDigitsToLetters[digit][letterIndex];
+  }
+};
+
+console.log(telephoneWords("0002"))
+ // [ "000A", "000B", "000C" ]
+
+//console.log(telephoneWords("1123"))
+// [ "11AD", "11AE", "11AF", "11BD", "11BE", "11BF", "11CD", "11CE", "11CF" ]
