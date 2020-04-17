@@ -14,4 +14,27 @@
 
 var allAnagrams = function(string) {
   // Your code here.
+  var anagrams = [];  //storage for result
+
+  var anagramHelper = function(anagram, remainder) {
+    if (remainder.length === 0) {
+      anagrams.push(anagram);
+    }
+    for (var i = 0; i < remainder.length; i++) {
+      var start = remainder[i];
+      var rest = remainder.slice(0, i) + remainder.slice(i + 1);
+      anagramHelper(anagram + start, rest);
+    }
+  };
+
+  anagramHelper('', string);
+  return anagrams;
 };
+
+
+
+// var anagrams = allAnagrams('ab');
+// console.log(anagrams); // [ 'ab', 'ba']
+
+var anagrams = allAnagrams('abc');
+console.log(anagrams); // [ 'abc', 'acb', 'bac', 'bca', 'cab', 'cba' ]
