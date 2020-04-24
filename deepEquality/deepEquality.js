@@ -12,4 +12,14 @@
   *
   */
 var deepEquals = function(apple, orange) {
+  // var isEqual = false;
+
+  // var deepEqualsHelper
+  // return isEqual;
+  var appleStr = JSON.stringify(apple);
+  var orangeStr = JSON.stringify(orange);
+  return appleStr === orangeStr;
 };
+
+console.log(deepEquals({a:1, b: {c:3}},{a:1, b: {c:3}})); // true
+console.log(deepEquals({a:1, b: {c:5}},{a:1, b: {c:6}})); // false
