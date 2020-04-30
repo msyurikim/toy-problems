@@ -104,9 +104,7 @@ var mergeSort = function(array) {
   var right = array.slice(half);
   //left = mergeSort(left);
   //right = mergeSort(right);
-  //var sorted =
   return merge(mergeSort(left), mergeSort(right));
-  //return sorted;
 };
 
 var merge = function(left, right) {
@@ -121,9 +119,6 @@ var merge = function(left, right) {
       i++;
     }
   }
-  // if (i === left.length && j !== right.length) {  //numbers left over on right side
-  //   result.push(...right.slice(j));
-  // }
   if (i !== left.length || j !== right.length) {  //numbers left over on left/right side
     result.push(...left.slice(i), ...right.slice(j));
   }
@@ -135,29 +130,31 @@ var merge = function(left, right) {
 // console.log(result);
 // console.log(result.length);
 
-var input = [];
-var n = 1000000;
+console.log(mergeSort([1,2,3,4,5,6,7,8,9,10]));
 
-for (var i = 0; i < n; i++) {
+// var input = [];
+// var n = 1000000;
 
-  var number = Math.floor(Math.random() * n);
+// for (var i = 0; i < n; i++) {
 
-  input.push(number);
+//   var number = Math.floor(Math.random() * n);
 
-}
+//   input.push(number);
 
-var sorted = input.sort(function (a, b) {
+// }
 
-  return a - b;
+// var sorted = input.sort(function (a, b) {
 
-});
-var result = mergeSort(input);
+//   return a - b;
 
-for (var i = 0; i < n; i++) {
-  if (result[i] !== sorted[i]) {
-    console.log(result[i]);
-  }
-}
+// });
+// var result = mergeSort(input);
 
-console.log(result);
-console.log('done');
+// for (var i = 0; i < n; i++) {
+//   if (result[i] !== sorted[i]) {
+//     console.log(result[i]);
+//   }
+// }
+
+// console.log(result);
+// console.log('done');

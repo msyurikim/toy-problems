@@ -76,8 +76,8 @@ var findLetter = function(digit, letterIndex) {
   }
 };
 
-console.log(telephoneWords("0002"))
+// console.log(telephoneWords("0002"))
  // [ "000A", "000B", "000C" ]
 
-//console.log(telephoneWords("1123"))
+console.log(telephoneWords("1123"));
 // [ "11AD", "11AE", "11AF", "11BD", "11BE", "11BF", "11CD", "11CE", "11CF" ]
