@@ -44,17 +44,17 @@
 // };
 
 var bind = function (fn, context) {
-  var outerArgs = Array.prototype.slice.call(arguments, 2);
-  console.log(arguments);
-  console.log(outerArgs);
-  return function () {
-    var innerArgs = Array.prototype.slice.call(arguments);
-    console.log(innerArgs);
-    var totalArgs = Array.prototype.concat( outerArgs, innerArgs );
-    console.log(totalArgs);
-    return fn.apply(context, totalArgs);
-    // return fn.apply(context);
-  };
+	var outerArgs = Array.prototype.slice.call(arguments, 2);
+	console.log(arguments);
+	console.log(outerArgs);
+	return function () {
+		var innerArgs = Array.prototype.slice.call(arguments);
+		console.log(innerArgs);
+		var totalArgs = Array.prototype.concat( outerArgs, innerArgs );
+		console.log(totalArgs);
+		return fn.apply(context, totalArgs);
+		// return fn.apply(context);
+	};
 };
 
 /*
@@ -82,21 +82,31 @@ var bind = function (fn, context) {
  *
 */
 
-Function.prototype.bind = function(
-) {
-  // TODO: Your code here
+//only from solution
+Function.prototype.bind = function( context ) {
+	// TODO: Your code here
+
+	var previousArgs = Array.prototype.slice.call(arguments, 1);
+	var func = this;
+
+	return function() {
+		var args = Array.prototype.slice.call(arguments);
+		args = previousArgs.concat(args);
+
+		return func.apply(context, args);
+	};
 };
 
 var alice = {
-  name: 'alice',
-  shout: function(){
-  alert(this.name);
-  }
-}
-console.log('hi');
+	name: "alice",
+	shout: function(){
+		alert(this.name);
+	}
+};
+console.log("hi");
 var boundShout = bind(alice.shout, alice);
 boundShout(); // alerts 'alice'
-boundShout = bind(alice.shout, {name: 'bob'});
+boundShout = bind(alice.shout, {name: "bob"});
 boundShout(); // alerts 'bob'
 
 // example 2:

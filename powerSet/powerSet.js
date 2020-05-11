@@ -17,25 +17,25 @@
  * -> ["", "j", "ju", "jm", "jp", "jmu", "jmp", "jpu", "jmpu", "u", "m", "p", "mu", "mp", "pu", "mpu"]
  */
 
-var powerSet = function(str) {
-  var subsets = [''];
+// var powerSet = function(str) {
+//   var subsets = [''];
 
-  var letters = str.split('');
-  subsets.push(...letters);
+//   var letters = str.split('');
+//   subsets.push(...letters);
 
-  var findSet = function(set, letters, allLetters) {
-    if (letters.length < 2) {
-      subsets.push(letters);
-    } //else
-    for (var i = 0; i < letters.length; i++) {
+//   var findSet = function(set, letters, allLetters) {
+//     if (letters.length < 2) {
+//       subsets.push(letters);
+//     } //else
+//     for (var i = 0; i < letters.length; i++) {
 
-      findSet(start, rest);
-    }
-  }
+//       findSet(start, rest);
+//     }
+//   }
 
-  findSet('', letters, letters);
-  return subsets;
-};
+//   findSet('', letters, letters);
+//   return subsets;
+// };
 
 // var findSet = function(set, remainder) {
 //   if (remainder.length === 0) {
@@ -47,3 +47,42 @@ var powerSet = function(str) {
 //     findSet(start, rest);
 //   }
 // }
+
+var powerSet = function(str) {
+
+	var set = [];
+	var hash = {};
+	if (!str) { str = ""; }
+	str = str.split("").sort();
+
+	// remove duplicates
+	for (var i = 1; i < str.length; i++) {
+		if (str[i - 1] === str[i]) {
+			str.splice(i, 1);
+			i--;
+		}
+	}
+
+	// recursive through the sub sets
+	var recurse = function(strSet) {
+		var joined = strSet.join("");
+
+		// check if we have visited this combo
+		if (hash[joined]) { return; }
+		hash[joined] = true;
+		set.push(joined);
+
+		// don't recurse to empty set - add it once at the end
+		if (strSet.length === 1) { return; }
+
+		// recurse all subsets
+		for (var i = 0; i < strSet.length; i++) {
+			var subSet = strSet.slice(0, i).concat(strSet.slice(i + 1));
+			recurse(subSet);
+		}
+	};
+	recurse(str);
+	set.push(""); // the power set, by definition, includes the empty set
+
+	return set;
+};

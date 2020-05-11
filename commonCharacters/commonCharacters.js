@@ -13,5 +13,5 @@
 
 
 var commonCharacters = function(string1, string2) {
-  // TODO: Your code here!
+	// TODO: Your code here!
 };

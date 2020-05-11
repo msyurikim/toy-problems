@@ -36,34 +36,34 @@
 // This function is to help you test, and should not be incorporated in your solution.
 // It will transform an array of numbers into an array of valid objects.
 var testingTransform = function(array) {
-  var transform = [];
+	var transform = [];
 
-  for (var i = 0; i < array.length; i++) {
-    transform.push({value: array[i], i: i});
-  }
+	for (var i = 0; i < array.length; i++) {
+		transform.push({value: array[i], i: i});
+	}
 
-  return transform;
+	return transform;
 };
 
 var insertionSort = function(array) {
-  for (var i = 1; i < array.length; i++) {
-    console.log(array);
-    for (var j = 0; j <= i; j++) {
-      console.log(j);
-      if (i === j) {  //array[i] > array[j], and reach end of sorted part of array
-        break;
-      } else if (array[i].value < array[j].value) {
-        var current = array.splice(i, 1);
-        console.log(current);
-        array.splice(j, 0, current[0]);
-        console.log(array);
-      } else if (array[i].value === array[j].value) {
-        //i > j , so leave the order
-        continue;
-      }
-    }
-  }
-  return array;
+	for (var i = 1; i < array.length; i++) {
+		console.log(array);
+		for (var j = 0; j <= i; j++) {
+			console.log(j);
+			if (i === j) {  //array[i] > array[j], and reach end of sorted part of array
+				break;
+			} else if (array[i].value < array[j].value) {
+				var current = array.splice(i, 1);
+				console.log(current);
+				array.splice(j, 0, current[0]);
+				console.log(array);
+			} else if (array[i].value === array[j].value) {
+				//i > j , so leave the order
+				continue;
+			}
+		}
+	}
+	return array;
 };
 
 //console.log(insertionSort([{value: 2}, {value: 1}, {value: 3}]));

@@ -31,19 +31,19 @@
  *   See https://www.dartmouth.edu/~chance/teaching_aids/books_articles/Mann.pdf .
  */
 
-var shuffleDeck = function(deck) {
-  // Your code here
-  var half = Math.floor(deck.length / 2);
+// var shuffleDeck = function(deck) {
+// 	// Your code here
+// 	var half = Math.floor(deck.length / 2);
 
-  for (var i = half; i < deck.length; i++) {
-    var rand = Math.floor(Math.random() * half);
-    var temp = deck[i];
-    deck[i] = deck[rand];
-    deck[rand] = temp;
-  }
+// 	for (var i = half; i < deck.length; i++) {
+// 		var rand = Math.floor(Math.random() * half);
+// 		var temp = deck[i];
+// 		deck[i] = deck[rand];
+// 		deck[rand] = temp;
+// 	}
 
-  return deck;
-};
+// 	return deck;
+// };
 
 // var shuffleDeck = function(deck) {
 //   // Your code here
@@ -62,20 +62,40 @@ var shuffleDeck = function(deck) {
 //   return shuffled;
 // };
 
+var shuffleDeck = function(deck) {
+
+	// Constant space (in-place) solution
+	var swap = function (a, b) {
+		var temp = deck[a];
+		deck[a] = deck[b];
+		deck[b] = temp;
+	};
+	// we shuffle into the front of the array
+	// i is the first index of the un-shuffled portion
+	for (var i = 0; i < deck.length; i++) {
+		// select a random card from the un-shuffled portion
+		var pick = i + Math.floor(Math.random() * (deck.length - i));
+		// swap that card with the first un-shuffled card
+		swap(i, pick);
+		// since the pick is selected randomly each time, the swap is not biasing
+	}
+	return deck;
+};
+
 // Ordered deck generator provided for your testing convenience
 // (You may alter this function, but an unaltered copy will be used for tests.)
 var orderedDeck = function() {
-  var suits = [ '♥', '♣', '♠', '♦' ];
-  var values = [ 'A', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K' ];
-  var deck = [];
+	var suits = [ "♥", "♣", "♠", "♦" ];
+	var values = [ "A", 2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K" ];
+	var deck = [];
 
-  suits.forEach(function(suit) {
-    values.forEach(function(value) {
-      deck.push(value + suit);
-    });
-  });
+	suits.forEach(function(suit) {
+		values.forEach(function(value) {
+			deck.push(value + suit);
+		});
+	});
 
-  return deck;
+	return deck;
 };
 
 var deck = orderedDeck();

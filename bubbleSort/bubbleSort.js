@@ -35,23 +35,23 @@
 //time complexity: O(n^2) --> worst case
 var bubbleSort = function(array) {
 
-  for (var i = 1; i <= array.length; i++) { //number of loops through array
-    for (var j = 0; j < array.length - 1; j++) {  //iterating through array
-        if (array[j] > array[j+1]) {
-          var temp = array[j + 1];
-          array[j + 1] = array[j];
-          array[j] = temp;
-        } else if (j >= i){  //already sorted
-          break;  //get out of loop
-        } else {  //sorted and (current index < num loops)
-          continue;
-        }
+	for (var i = 1; i <= array.length; i++) { //number of loops through array
+		for (var j = 0; j < array.length - 1; j++) {  //iterating through array
+			if (array[j] > array[j+1]) {
+				var temp = array[j + 1];
+				array[j + 1] = array[j];
+				array[j] = temp;
+			} else if (j >= i){  //already sorted
+				break;  //get out of loop
+			} else {  //sorted and (current index < num loops)
+				continue;
+			}
 
-      } // end of first iteration, first element of original array is sorted
-    //swap(array);
-  }
+		} // end of first iteration, first element of original array is sorted
+		//swap(array);
+	}
 
-  return array;
+	return array;
 };
 
 // var swap = function(array) { //,x

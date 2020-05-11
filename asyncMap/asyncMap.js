@@ -37,43 +37,45 @@
  *
  */
 
-var asyncMap = function(tasks, callback) {
-  var results = [];
-
-  // var prom1 = () => tasks[0]( str => { results[0] = str; });
-  // var prom2 = () => tasks[1]( str => { results[1] = str; });
-
-  var prom1 = () => tasks[0]( str => { results.push(str); });
-  var prom2 = () => tasks[1]( str => { results.push(str); });
-
-  prom1();
-  while (results.length === 0) {
-    console.log('waiting for first task');
-  }
-  prom2();
-  while (results.length === 1) {
-    console.log('waiting for second task');
-  }
-  callback(results);
-  return results;
-};
-
-
 // var asyncMap = function(tasks, callback) {
 //   var results = [];
 
-//   var prom1 = new Promise( () => tasks[0]( str => { results[0] = str; }) );
-//   var prom2 = prom1.then(new Promise( () => tasks[1]( str => { results[1] = str; }) ));
+//   // var prom1 = () => tasks[0]( str => { results[0] = str; });
+//   // var prom2 = () => tasks[1]( str => { results[1] = str; });
 
-//   //when these are done
-//   async function doTasks() {
-//     await prom2.catch(e => {console.log(e)});
-//     callback(results);
+//   var prom1 = () => tasks[0]( str => { results.push(str); });
+//   var prom2 = () => tasks[1]( str => { results.push(str); });
+
+//   prom1();
+//   while (results.length === 0) {
+//     console.log('waiting for first task');
 //   }
-//   doTasks();
-
+//   prom2();
+//   while (results.length === 1) {
+//     console.log('waiting for second task');
+//   }
+//   callback(results);
 //   return results;
 // };
+
+var asyncMap = function(tasks, callback) {
+
+  var resultsArray = [];
+  var resultsCount = 0;
+
+  for (var i = 0; i < tasks.length; i++) {
+    (function (i) {
+      tasks[i](function (val) {
+        resultsArray[i] = val;
+        resultsCount++;
+        if (resultsCount === tasks.length) {
+          callback(resultsArray);
+        }
+      });
+    })(i);
+  }
+  };
+
 
 var results = asyncMap([
   function(cb){

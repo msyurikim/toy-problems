@@ -95,34 +95,82 @@
  *
  */
 
-var mergeSort = function(array) {
-  if (array.length === 1) {
-    return array;
-  }
-  var half = Math.floor(array.length / 2);
-  var left = array.slice(0, half);
-  var right = array.slice(half);
-  //left = mergeSort(left);
-  //right = mergeSort(right);
-  return merge(mergeSort(left), mergeSort(right));
+// var mergeSort = function(array) {
+//   if (array.length === 1) {
+//     return array;
+//   }
+//   var half = Math.floor(array.length / 2);
+//   var left = array.slice(0, half);
+//   var right = array.slice(half);
+//   //left = mergeSort(left);
+//   //right = mergeSort(right);
+//   return merge(mergeSort(left), mergeSort(right));
+// };
+
+// var merge = function(left, right) {
+//   let result = [], i = 0, j = 0;
+//   while (i < left.length && j < right.length) {
+//     if (left[i] > right[j]) {
+//       result.push(right[j]);
+//       j++;
+//     }
+//     else {  //left < right || left = right ---> preserves order (stable sort)
+//       result.push(left[i]);
+//       i++;
+//     }
+//   }
+//   if (i !== left.length || j !== right.length) {  //numbers left over on left/right side
+//     result.push(...left.slice(i), ...right.slice(j));
+//   }
+//   return result;
+// };
+
+var merge = function (left, right) {
+	var merged = [];
+	var iL = 0;
+	var iR = 0;
+	while (merged.length < left.length + right.length) {
+		// Default to the left element for stability
+		if (iR >= right.length || left[iL] <= right[iR]) {
+			merged.push(left[iL]);
+			iL += 1;
+		} else {
+			merged.push(right[iR]);
+			iR += 1;
+		}
+	}
+	return merged;
 };
 
-var merge = function(left, right) {
-  let result = [], i = 0, j = 0;
-  while (i < left.length && j < right.length) {
-    if (left[i] > right[j]) {
-      result.push(right[j]);
-      j++;
-    }
-    else {  //left < right || left = right ---> preserves order (stable sort)
-      result.push(left[i]);
-      i++;
-    }
-  }
-  if (i !== left.length || j !== right.length) {  //numbers left over on left/right side
-    result.push(...left.slice(i), ...right.slice(j));
-  }
-  return result;
+var mergeSort = function(array) {
+	var lists = [];
+	// Split array into sublists
+	// Natural variant: split array into pre-sorted sublists
+	var currentList = [];
+	lists = [];
+	for (var i = 0; i < array.length; i++) {
+		if (currentList.length && array[i] < currentList[currentList.length - 1]) {
+			lists.push(currentList);
+			currentList = [];
+		}
+		currentList.push(array[i]);
+	}
+	lists.push(currentList);
+	// Until the entire array is sorted
+	while (lists.length > 1) {
+		var newLists = [];
+		// Merge all adjacent lists
+		for (var i = 0; i < Math.floor(lists.length / 2); i++) {
+			newLists.push(merge(lists[i * 2], lists[i * 2 + 1]));
+		}
+		// Include the leftover list if the number is odd
+		if (lists.length % 2) {
+			newLists.push(lists[lists.length - 1]);
+		}
+		lists = newLists;
+	}
+	// we have a single, fully sorted list
+	return lists[0];
 };
 
 // var result = mergeSort([4,7,4,3,9,1,2]);
