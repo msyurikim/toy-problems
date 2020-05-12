@@ -23,19 +23,52 @@
 var mixEvents = function(obj) {
 	// TODO: Your code here
 	obj.on = function (event, cb) {
-		obj[event] = cb;
+		if (obj.hasOwnProperty(event)) {
+			obj[event].push(cb);
+			console.log(obj[event]);
+		} else {
+			obj[event] = [cb];
+		}
 	};
-	obj.trigger = function(event) {
-		obj[event]();
+	obj.trigger = function(events) {
+		if (arguments.length > 1) {
+			events = [...events];
+			events.forEach( event => obj[event].forEach(cb => cb()));
+		} else {
+			console.log(obj[events]);
+			obj[events].forEach(cb => cb())
+		}
 	};
-
 	return obj;
 };
 
 
-var obj = mixEvents({ name: "Alice", age: 30 });
-obj.on("ageChange", function(){ // On takes an event name and a callback function
-	console.log("Age changed");
+// var obj = mixEvents({ name: "Alice", age: 30 });
+// obj.on("ageChange", function(){ // On takes an event name and a callback function
+// 	console.log("Age changed");
+// });
+// obj.age++;
+// obj.trigger("ageChange"); // This should call our callback! Should log 'age changed'.
+
+var car = mixEvents({
+	color: 'red',
+	'insurance-premium': 'costly',
+	speed: 0,
+	radio: 'off'
 });
-obj.age++;
-obj.trigger("ageChange"); // This should call our callback! Should log 'age changed'.
+
+// Both of these should get called when we trigger 'green-light'.
+car.on('green-light', function() {
+	car.speed = 100;
+});
+
+car.on('green-light', function() {
+	car.radio = 'blaring';
+});
+
+// car.speed.should.equal(0);
+// car.radio.should.equal('off');
+
+car.trigger('green-light');
+console.log('speed: ', car.speed);	//100
+console.log('radio: ', car.radio);	//blaring
