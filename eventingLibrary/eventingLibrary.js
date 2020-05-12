@@ -31,7 +31,7 @@ var mixEvents = function(obj) {
 	};
 	obj.trigger = function(events) {
 		if (arguments.length > 1) {
-			events = [...arguments];
+			events = arguments.map(arg => arg);
 			events.forEach( event => obj[event].forEach(cb => cb()));
 		} else {
 			obj[events].forEach(cb => cb())
