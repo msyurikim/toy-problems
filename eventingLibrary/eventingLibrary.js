@@ -25,7 +25,6 @@ var mixEvents = function(obj) {
 	obj.on = function (event, cb) {
 		if (obj.hasOwnProperty(event)) {
 			obj[event].push(cb);
-			console.log(obj[event]);
 		} else {
 			obj[event] = [cb];
 		}
@@ -35,7 +34,6 @@ var mixEvents = function(obj) {
 			events = [...events];
 			events.forEach( event => obj[event].forEach(cb => cb()));
 		} else {
-			console.log(obj[events]);
 			obj[events].forEach(cb => cb())
 		}
 	};
