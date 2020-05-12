@@ -11,7 +11,8 @@
       "skipFiles": [
         "<node_internals>/**"
       ],
-      "program": "${workspaceFolder}/rockPaperScissors/rockPaperScissors.js"
+      "program": "${workspaceFolder}/rockPaperScissors/rockPaperScissors.js",
     }
-  ]
+  ],
+
 }
