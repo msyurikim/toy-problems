@@ -50,11 +50,11 @@ var Range = function(start, end, step) {
 		this.range.push(start);
 	} else if (arguments.length === 2  || arguments.length === 3) {
 		step = step || 1;
-		if (start > end) {
-			startVal = start;
-			start = end;
-			end = startVal;
-		}
+		// if (start > end) {
+		// 	startVal = start;
+		// 	start = end;
+		// 	end = startVal;
+		// }
 		for (let i = start; i <= end; i += step) {
 			this.range.push(i);
 		}
