@@ -40,16 +40,47 @@
 
 
 var Range = function(start, end, step) {
+	this.range = [];
+	if (arguments.length === 2) {
+		for (let i = start; i <= end; i++) {
+			this.range.push(i);
+		}
+	} else if (arguments.length === 3) {
+		for (let i = start; i <= end; i += step) {
+			this.range.push(i);
+		}
+	} else {
+		this.range.push(start);
+	}
+
 };
 
 Range.prototype.size = function () {
+	return this.range.length;
 };
 
 Range.prototype.each = function (callback) {
+	this.range.forEach(number => {
+		callback(number);
+	})
 };
 
 Range.prototype.includes = function (val) {
+	return this.range.includes(val);
 };
 
-var range = new Range(1);
+// var range = new Range(1);
+// console.log(range.range);
 
+// var myRange = new Range(0,10); // a new range representing the numbers between 0 and 10 (inclusively)
+// console.log(myRange.range);
+
+var evenNumbers = new Range(2,8,2); // A range with the even numbers 2, 4, 6, and 8.
+evenNumbers.each(function(val){
+  console.log(val+"!");
+});
+console.log("Who do we appreciate!?");
+
+console.log(evenNumbers.size()); //4
+console.log(evenNumbers.includes(2)); // should be true,
+console.log(evenNumbers.includes(3)); //should be false

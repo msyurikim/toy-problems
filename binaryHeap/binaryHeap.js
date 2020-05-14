@@ -10,7 +10,7 @@
  * parent of the 3rd and 4th nodes, and the 2nd node will be the parent of the 5th and
  * 6th nodes. In a specific kind of binary heap, the binary min heap, every node is
  * less than its immediate children:
- * 
+ *
  *          0
  *     1         2
  *   3   4     5   6
@@ -68,20 +68,54 @@
 
 
 function BinaryHeap () {
-  this._heap = [];
-  // this compare function will result in a minHeap, use it to make comparisons between nodes in your solution
-  this._compare = function (i, j) { return i < j };
+	this._heap = [];
+	// this compare function will result in a minHeap, use it to make comparisons between nodes in your solution
+	this._compare = function (i, j) { return i < j };
 }
 
 // This function works just fine and shouldn't be modified
 BinaryHeap.prototype.getRoot = function () {
-  return this._heap[0];
-}
+	return this._heap[0];
+};
+
+// *          0
+// *     1         2
+// *   3   4     5   6
+// *  7
+// * [0, 1, 2, 3, 4, 5, 6, 7]
+// * parentIndex = Math.floor( (index - 1) / 2 )
+// * childrenIndices = [index * 2 + 1, index * 2 + 2]
 
 BinaryHeap.prototype.insert = function (value) {
-  // TODO: Your code here
-}
+	// TODO: Your code here
+	this._heap.push(value);
+	var insertHelper = (index) => {
+		var parent = Math.floor((index - 1) / 2);
+		if (this._compare(this._heap[index], this._heap[parent])) {	//(value < this._heap[parent])
+			var parentVal = this._heap[parent];
+			this._heap[parent] = this._heap[index];
+			this._heap[index] = parentVal;
+			insertHelper(parent);
+		}
+	};
+	insertHelper(this._heap.length - 1);
+};
 
 BinaryHeap.prototype.removeRoot = function () {
-  // TODO: Your code here
-}
+	// TODO: Your code here
+	//var root = this.getRoot();
+	this._heap[0] = this._heap[this._heap.length - 1];
+	//this._heap[this._heap.length - 1] = root;
+	this._heap.pop();
+
+	var removeHelper = (index) => {
+		var children = [index * 2 + 1, index * 2 + 2];
+		var parentVal = this._heap[index];
+		if (this._compare(this._heap[children[0]], parentVal)) {
+
+		} else if (this._compare(this._heap[children[1]], parentVal)) {
+
+		}
+	};
+	removeHelper(0);
+};
