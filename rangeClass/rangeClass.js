@@ -38,19 +38,28 @@
  * evenNumbers.includes(2) should be true, evenNumbers.includes(3) should be false
  */
 
+// *   - You should allow a negative value for 'step' to count backwards.
+// *   - If the start value is greater than the end value, assume we're counting backwards.
+// you should *not*
+//  * use an Array as backing storage. Any given range could potentially be thousands of numbers long,
+//  * so find a way to represent the range without actually storing each element.
 
 var Range = function(start, end, step) {
 	this.range = [];
-	if (arguments.length === 2) {
-		for (let i = start; i <= end; i++) {
-			this.range.push(i);
+	if (arguments.length === 1) {
+		this.range.push(start);
+	} else if (arguments.length === 2  || arguments.length === 3) {
+		step = step || 1;
+		if (start > end) {
+			startVal = start;
+			start = end;
+			end = startVal;
 		}
-	} else if (arguments.length === 3) {
 		for (let i = start; i <= end; i += step) {
 			this.range.push(i);
 		}
 	} else {
-		this.range.push(start);
+		this.range = null;
 	}
 
 };
