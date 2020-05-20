@@ -10,4 +10,12 @@
 
 var largestProductOfThree = function(array) {
   // TODO: everything
+  array.sort(compare);
+  return array[0] * array[1] * array[2];
 };
+
+var compare = (a, b) => {
+  return b - a;
+};
+
+console.log(largestProductOfThree([2, 1, 3, 7])); // === 42
