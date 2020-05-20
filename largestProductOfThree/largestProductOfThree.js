@@ -11,7 +11,6 @@
 var largestProductOfThree = function(array) {
   var negatives = [];
   var positives = [];
-  // var product = 1;
   for (let i = 0; i < array.length; i++) {
     if (array[i] < 0) {
       negatives.push(array[i]);
